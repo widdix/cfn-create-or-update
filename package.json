@@ -1,0 +1,37 @@
+{
+  "name": "cfn-create-or-update",
+  "version": "1.0.0",
+  "description": "Create or update CloudFormation stack also if no updates are to be performed.",
+  "keywords": [
+    "AWS",
+    "CloudFormation",
+    "cfn"
+  ],
+  "bin" : {
+    "cfn-create-or-update": "./cli.js"
+  },
+  "main": "index.js",
+  "scripts": {
+    "test": "make test"
+  },
+  "author": "Michael Wittig <michael@widdix.de>",
+  "license": "MIT",
+  "dependencies": {
+    "aws-sdk": "2.28.0",
+    "yargs": "7.0.2",
+    "assert-plus": "1.0.0"
+  },
+  "devDependencies": {
+    "mocha": "3.2.0",
+    "jshint": "2.9.4",
+    "madge": "1.6.0",
+    "istanbul": "0.4.5"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/widdix/cfn-create-or-update.git"
+  },
+  "engines": {
+    "node": ">=6"
+  }
+}
