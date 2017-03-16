@@ -29,7 +29,7 @@ describe('map', function() {
       }, Error);
     });
   });
-  describe('parameter', function() {
+  describe('tag', function() {
     it('Key=key,Value=value', function() {
       assert.deepEqual(map.tag('Key=key,Value=value'), {
         key: 'key',

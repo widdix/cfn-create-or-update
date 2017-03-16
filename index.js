@@ -40,6 +40,7 @@ function createStack(cfn, args, cb) {
       if (parameter.usePreviousValue !== undefined) {
         ret.UsePreviousValue = parameter.usePreviousValue;
       }
+      return ret;
     });
   }
   if (args.disableRollback !== undefined) {
@@ -124,6 +125,7 @@ function updateStack(cfn, args, cb) {
       if (parameter.usePreviousValue !== undefined) {
         ret.UsePreviousValue = parameter.usePreviousValue;
       }
+      return ret;
     });
   }
   if (args.capabilities !== undefined) {
