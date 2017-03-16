@@ -12,13 +12,13 @@ describe('arg', function() {
       const argv = arg.parse(['/node', 'cli.js', '--stack-name', 'name']);
       assert.equal(argv.stackName, 'name');
     });
-    it('globals', function() {
+    it('global', function() {
       const argv = arg.parse(['/node', 'cli.js', '--region', 'eu-west-1', '--profile', 'profile', '--stack-name', 'name']);
       assert.equal(argv.region, 'eu-west-1');
       assert.equal(argv.profile, 'profile');
       assert.equal(argv['stack-name'], 'name');
     });
-    it('commons', function() {
+    it('common', function() {
       const argv = arg.parse(['/node', 'cli.js', '--stack-name', 'name', '--template-body', 'body', '--template-url', 'url', '--parameters', 'ParameterKey=key,UsePreviousValue=true', 'ParameterKey=key,ParameterValue=value', '--capabilities', 'capability1', 'capability2', '--resource-types', 'type1', 'type2', '--role-arn', 'arn', '--stack-policy-body', 'body', '--stack-policy-url', 'url', '--notification-arns', 'arn1', 'arn2']);
       assert.equal(argv['stack-name'], 'name');
       assert.equal(argv['template-body'], 'body');
@@ -67,6 +67,23 @@ describe('arg', function() {
         const argv = arg.parse(['/node', 'cli.js', '--stack-name', 'name', '--no-use-previous-template']);
         assert.equal(argv['stack-name'], 'name');
         assert.equal(argv['use-previous-template'], false);
+      });
+    });
+    describe('additional', function() {
+      it('update', function() {
+        const argv = arg.parse(['/node', 'cli.js', '--stack-name', 'name']);
+        assert.equal(argv['stack-name'], 'name');
+        assert.equal(argv.wait, undefined);
+      });
+      it('--use-previous-template', function() {
+        const argv = arg.parse(['/node', 'cli.js', '--stack-name', 'name', '--wait']);
+        assert.equal(argv['stack-name'], 'name');
+        assert.equal(argv.wait, true);
+      });
+      it('--no-use-previous-template', function() {
+        const argv = arg.parse(['/node', 'cli.js', '--stack-name', 'name', '--no-wait']);
+        assert.equal(argv['stack-name'], 'name');
+        assert.equal(argv.wait, false);
       });
     });
   });

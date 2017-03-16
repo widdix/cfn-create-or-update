@@ -79,7 +79,17 @@ function createStack(cfn, args, cb) {
     if (err) {
       cb(err);
     } else {
-      cb(null, res);
+      if (args.wait === true) {
+        cfn.waitFor('stackCreateComplete', {StackName: args.stackName}, (err) => {
+          if (err) {
+            cb(err);
+          } else {
+            cb(null, res);
+          }
+        });
+      } else {
+        cb(null, res);
+      }
     }
   });
 }
@@ -148,7 +158,17 @@ function updateStack(cfn, args, cb) {
         cb(err);
       }
     } else {
-      cb(null, res);
+      if (args.wait === true) {
+        cfn.waitFor('stackUpdateComplete', {StackName: args.stackName}, (err) => {
+          if (err) {
+            cb(err);
+          } else {
+            cb(null, res);
+          }
+        });
+      } else {
+        cb(null, res);
+      }
     }
   });
 }
@@ -200,6 +220,7 @@ exports.createOrUpdate = (args, cb) => {
   assert.optionalString(args.stackPolicyDuringUpdateUrl, 'stackPolicyDuringUpdateUrl');
   assert.optionalString(args.profile, 'profile');
   assert.optionalString(args.region, 'region');
+  assert.optionalBool(args.wait, 'wait');
   const cfn = createCfnClient(args.region, args.profile);
   checkStack(cfn, args, (err, exists) => {
     if (err) {

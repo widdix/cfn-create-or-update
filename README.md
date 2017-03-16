@@ -68,6 +68,12 @@ Only used during update, otherwise ignored (as documented in the AWS CLI [update
 --stack-policy-during-update-url
 ```
 
+Additional parameters
+
+```
+---wait
+```
+
 ## Contribution
 
 If you want to create a Pull-Request please make sure that `make test` runs without failures.
