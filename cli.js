@@ -2,6 +2,11 @@
 
 'use strict';
 
+// CLI uses AWS_DEFAULT_REGION, while the Node.js SDK uses AWS_REGION
+if (process.env.AWS_DEFAULT_REGION !== undefined && process.env.AWS_REGION === undefined) {
+  process.env.AWS_REGION = process.env.AWS_DEFAULT_REGION;
+}
+
 const fs = require('fs');
 const map = require('./lib/map.js');
 const arg = require('./lib/arg.js');
