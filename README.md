@@ -71,7 +71,7 @@ Only used during update, otherwise ignored (as documented in the AWS CLI [update
 Additional parameters
 
 ```
----wait
+--wait
 ```
 
 ## Contribution

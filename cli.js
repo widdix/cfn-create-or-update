@@ -122,6 +122,9 @@ if (has('profile')) {
 if (has('region')) {
   args.region = string('region');
 }
+if (has('wait')) {
+  args.wait = boolean('wait');
+}
 
 cfn.createOrUpdate(args, function(err, res) {
   if (err) {
