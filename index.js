@@ -32,13 +32,13 @@ function createStack(cfn, args, cb) {
   if (args.parameters !== undefined) {
     params.Parameters = args.parameters.map((parameter) => {
       const ret = {
-        ParameterKey: parameter.parameterKey
+        ParameterKey: parameter.ParameterKey
       };
-      if (parameter.parameterValue !== undefined) {
-        ret.ParameterValue = parameter.parameterValue;
+      if (parameter.ParameterValue !== undefined) {
+        ret.ParameterValue = parameter.ParameterValue;
       }
-      if (parameter.usePreviousValue !== undefined) {
-        ret.UsePreviousValue = parameter.usePreviousValue;
+      if (parameter.UsePreviousValue !== undefined) {
+        ret.UsePreviousValue = parameter.UsePreviousValue;
       }
       return ret;
     });
@@ -105,8 +105,8 @@ function updateStack(cfn, args, cb) {
   if (args.templateUrl !== undefined) {
     params.TemplateURL = args.templateUrl;
   }
-  if (args.usePreviousTemplate !== undefined) {
-    params.UsePreviousTemplate = args.usePreviousTemplate;
+  if (args.UsePreviousTemplate !== undefined) {
+    params.UsePreviousTemplate = args.UsePreviousTemplate;
   }
   if (args.stackPolicyDuringUpdateBody !== undefined) {
     params.StackPolicyDuringUpdateBody = args.stackPolicyDuringUpdateBody;
@@ -117,13 +117,13 @@ function updateStack(cfn, args, cb) {
   if (args.parameters !== undefined) {
     params.Parameters = args.parameters.map((parameter) => {
       const ret = {
-        ParameterKey: parameter.parameterKey
+        ParameterKey: parameter.ParameterKey
       };
-      if (parameter.parameterValue !== undefined) {
-        ret.ParameterValue = parameter.parameterValue;
+      if (parameter.ParameterValue !== undefined) {
+        ret.ParameterValue = parameter.ParameterValue;
       }
-      if (parameter.usePreviousValue !== undefined) {
-        ret.UsePreviousValue = parameter.usePreviousValue;
+      if (parameter.UsePreviousValue !== undefined) {
+        ret.UsePreviousValue = parameter.UsePreviousValue;
       }
       return ret;
     });
@@ -196,9 +196,9 @@ exports.createOrUpdate = (args, cb) => {
   assert.optionalArrayOfObject(args.parameters, 'parameters');
   if (args.parameters !== undefined) {
     args.parameters.forEach((parameter, i) => {
-      assert.string(parameter.parameterKey, `parameters[${i}].parameterKey`);
-      assert.optionalString(parameter.parameterValue, `parameters[${i}].parameterValue`);
-      assert.optionalBool(parameter.usePreviousValue, `parameters[${i}].usePreviousValue`);
+      assert.string(parameter.ParameterKey, `parameters[${i}].parameterKey`);
+      assert.optionalString(parameter.ParameterValue, `parameters[${i}].parameterValue`);
+      assert.optionalBool(parameter.UsePreviousValue, `parameters[${i}].UsePreviousValue`);
     });
   }
   assert.optionalArrayOfString(args.capabilities, 'capabilities');
@@ -217,7 +217,7 @@ exports.createOrUpdate = (args, cb) => {
   assert.optionalBool(args.disableRollback, 'disableRollback');
   assert.optionalNumber(args.timeoutInMinutes, 'timeoutInMinutes');
   assert.optionalString(args.onFailure, 'onFailure');
-  assert.optionalBool(args.usePreviousTemplate, 'usePreviousTemplate');
+  assert.optionalBool(args.UsePreviousTemplate, 'UsePreviousTemplate');
   assert.optionalString(args.stackPolicyDuringUpdateBody, 'stackPolicyDuringUpdateBody');
   assert.optionalString(args.stackPolicyDuringUpdateUrl, 'stackPolicyDuringUpdateUrl');
   assert.optionalString(args.profile, 'profile');

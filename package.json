@@ -7,7 +7,7 @@
     "CloudFormation",
     "cfn"
   ],
-  "bin" : {
+  "bin": {
     "cfn-create-or-update": "./cli.js"
   },
   "main": "index.js",

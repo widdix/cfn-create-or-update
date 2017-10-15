@@ -87,4 +87,22 @@ describe('arg', function() {
       });
     });
   });
+  describe('validate', function() {
+    describe('parameters', function() {
+      it('handles as args', function() {
+        const argv = arg.validate(['/node', 'cli.js', '--stack-name', 'name', '--parameters', 'ParameterKey=key,UsePreviousValue=true', 'ParameterKey=key,ParameterValue=value']);
+        assert.deepEqual(argv.parameters, [
+          { ParameterKey: 'key', UsePreviousValue: true },
+          { ParameterKey: 'key', ParameterValue: 'value' }
+        ]);
+      });
+      it('handles as file', function() {
+        const argv = arg.validate(['/node', 'cli.js', '--stack-name', 'name', '--parameters', 'file://test/fixtures/params.json']);
+        assert.deepEqual(argv.parameters, [
+          { ParameterKey: 'fileKey1', ParameterValue: 'fileValue1' },
+          { ParameterKey: 'fileKey2', ParameterValue: 'fileValue2' }
+        ]);
+      });
+    });
+  });
 });

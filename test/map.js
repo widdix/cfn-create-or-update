@@ -7,20 +7,20 @@ describe('map', function() {
   describe('parameter', function() {
     it('ParameterKey=key,UsePreviousValue=true', function() {
       assert.deepEqual(map.parameter('ParameterKey=key,UsePreviousValue=true'), {
-        parameterKey: 'key',
-        usePreviousValue: true
+        ParameterKey: 'key',
+        UsePreviousValue: true
       });
     });
     it('ParameterKey=key,UsePreviousValue=false', function() {
       assert.deepEqual(map.parameter('ParameterKey=key,UsePreviousValue=false'), {
-        parameterKey: 'key',
-        usePreviousValue: false
+        ParameterKey: 'key',
+        UsePreviousValue: false
       });
     });
     it('ParameterKey=key,ParameterValue=value', function() {
       assert.deepEqual(map.parameter('ParameterKey=key,ParameterValue=value'), {
-        parameterKey: 'key',
-        parameterValue: 'value'
+        ParameterKey: 'key',
+        ParameterValue: 'value'
       });
     });
     it('ParameterKey=key,Unexpected=value', function() {
