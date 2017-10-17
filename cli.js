@@ -9,7 +9,7 @@ if (process.env.AWS_DEFAULT_REGION !== undefined && process.env.AWS_REGION === u
 
 const arg  = require('./lib/arg.js');
 const cfn  = require('./index.js');
-const args = arg.validate(process.argv);
+const args = arg.process(arg.parse(process.argv));
 
 cfn.createOrUpdate(args, function(err, res) {
   if (err) {
