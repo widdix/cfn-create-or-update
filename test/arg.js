@@ -87,4 +87,45 @@ describe('arg', function() {
       });
     });
   });
+  describe('process', function() {
+    describe('parameters', function() {
+      it('handles as args', function() {
+        const argv = arg.process({
+          parameters: [
+            'ParameterKey=key,UsePreviousValue=true',
+            'ParameterKey=key,ParameterValue=value'
+          ],
+          'stack-name': 'name'
+        });
+        assert.deepEqual(argv.parameters, [
+          { ParameterKey: 'key', UsePreviousValue: true },
+          { ParameterKey: 'key', ParameterValue: 'value' }
+        ]);
+      });
+      it('handles as JSON file', function() {
+        const argv = arg.process({
+          parameters: [
+            'file://test/fixtures/params.json'
+          ],
+          'stack-name': 'name'
+        });
+        assert.deepEqual(argv.parameters, [
+          { ParameterKey: 'fileKey1', ParameterValue: 'fileValue1' },
+          { ParameterKey: 'fileKey2', ParameterValue: 'fileValue2' }
+        ]);
+      });
+      it('handles as JSON string', function() {
+        const argv = arg.process({
+          parameters: [
+            '[{"ParameterKey": "sKey1","ParameterValue":"sVal1"}, {"ParameterKey": "sKey2","ParameterValue":"sVal2"}]'
+          ],
+          'stack-name': 'name'
+        });
+        assert.deepEqual(argv.parameters, [
+          { ParameterKey: 'sKey1', ParameterValue: 'sVal1' },
+          { ParameterKey: 'sKey2', ParameterValue: 'sVal2' }
+        ]);
+      });
+    });
+  });
 });

@@ -1,0 +1,10 @@
+[
+  {
+    "ParameterKey": "fileKey1",
+    "ParameterValue": "fileValue1"
+  },
+  {
+    "ParameterKey": "fileKey2",
+    "ParameterValue": "fileValue2"
+  }
+]
