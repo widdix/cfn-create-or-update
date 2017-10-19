@@ -1,6 +1,6 @@
 {
   "name": "cfn-create-or-update",
-  "version": "1.1.2",
+  "version": "1.2.0",
   "description": "Create or update CloudFormation stack also if no updates are to be performed.",
   "keywords": [
     "AWS",
