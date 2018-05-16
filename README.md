@@ -52,6 +52,12 @@ Global parameters (as documented in the [AWS CLI](http://docs.aws.amazon.com/cli
 --region
 ```
 
+If you use a parameter of type `List<?>` or `CommaDelimitedList`, you have to supply the values like this:
+
+```
+--parameters ParameterKey=SubnetIds,ParameterValue=\"subnet-3353611c,subnet-c3d51189\"
+```
+
 Only used during create, otherwise ignored (as documented in the AWS CLI [create-stack](http://docs.aws.amazon.com/cli/latest/reference/cloudformation/create-stack.html)):
 
 ```

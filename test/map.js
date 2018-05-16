@@ -11,9 +11,10 @@ describe('map', function() {
         UsePreviousValue: true
       });
     });
-    it('ParameterKey=key,UsePreviousValue=false', function() {
-      assert.deepEqual(map.parameter('ParameterKey=key,UsePreviousValue=false'), {
+    it('ParameterKey=key,ParameterValue=value,UsePreviousValue=false', function() {
+      assert.deepEqual(map.parameter('ParameterKey=key,ParameterValue=value,UsePreviousValue=false'), {
         ParameterKey: 'key',
+        ParameterValue: 'value',
         UsePreviousValue: false
       });
     });
@@ -27,6 +28,13 @@ describe('map', function() {
       assert.throws(() => {
         map.parameter('ParameterKey=key,Unexpected=value');
       }, Error);
+    });
+    it('ParameterKey=key,ParameterValue="value1,value2",UsePreviousValue=false', function() {
+      assert.deepEqual(map.parameter('ParameterKey=key,ParameterValue="value1,value2",UsePreviousValue=false'), {
+        ParameterKey: 'key',
+        ParameterValue: 'value1,value2',
+        UsePreviousValue: false
+      });
     });
   });
   describe('tag', function() {
