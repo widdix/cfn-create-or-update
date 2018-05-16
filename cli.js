@@ -2,9 +2,19 @@
 
 'use strict';
 
+const proxy = require('proxy-agent');
+const AWS = require('aws-sdk');
+
 // CLI uses AWS_DEFAULT_REGION, while the Node.js SDK uses AWS_REGION
 if (process.env.AWS_DEFAULT_REGION !== undefined && process.env.AWS_REGION === undefined) {
   process.env.AWS_REGION = process.env.AWS_DEFAULT_REGION;
+}
+
+// proxy support
+if (process.env.HTTPS_PROXY) {
+  AWS.config.update({
+    httpOptions: {agent: proxy(process.env.HTTPS_PROXY)}
+  });
 }
 
 const arg  = require('./lib/arg.js');

@@ -18,7 +18,7 @@ To install the CLI tool `cfn-create-or-update`, run:
 npm install -g cfn-create-or-update
 ```
 
-TO create or update a stack, run:
+To create or update a stack, run:
 
 ```
 cfn-create-or-update --stack-name test --template-body file://template.yml
@@ -73,6 +73,13 @@ Additional parameters
 ```
 --wait
 ```
+
+## Environment variables
+
+* both `AWS_REGION` and `AWS_DEFAULT_REGION` work
+* `HTTPS_PROXY` is used if set
+* `AWS_PROFILE` is used if set
+* `AWS_ACCESS_KEY_ID`, `AWS_SECRET_ACCESS_KEY`, and optionally `AWS_SESSION_TOKEN` are used of set
 
 ## Contribution
 
