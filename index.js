@@ -2,6 +2,7 @@
 
 const assert = require('assert-plus');
 const AWS = require('aws-sdk');
+const inquirer = require('inquirer');
 
 function checkStack(cfn, args, cb) {
   cfn.describeStacks({
@@ -175,12 +176,27 @@ function updateStack(cfn, args, cb) {
   });
 }
 
+function tokenCodeFn(serial, cb) {
+  const resp = inquirer.prompt(
+    {
+      name: 'token',
+      type: 'input',
+      default: '',
+      message: `MFA token for ${serial}:`
+    }).then((r) => {
+    cb(null, r.token);
+  }).catch((e) => {
+    console.log('error:', e);
+    cb(e);
+  });
+}
+
 function createCfnClient(region, profile) {
   const cfnOptions = {
     apiVersion: '2010-05-15'
   };
   if (profile !== undefined) {
-    cfnOptions.credentials = new AWS.SharedIniFileCredentials({profile: profile});
+    cfnOptions.credentials = new AWS.SharedIniFileCredentials({tokenCodeFn: tokenCodeFn, profile: profile});
   }
   if (region !== undefined) {
     cfnOptions.region = region;
@@ -223,7 +239,7 @@ exports.createOrUpdate = (args, cb) => {
   assert.optionalString(args.profile, 'profile');
   assert.optionalString(args.region, 'region');
   assert.optionalBool(args.wait, 'wait');
-  const cfn = createCfnClient(args.region, args.profile);
+  const cfn = createCfnClient(args.region, args.profile || process.env.AWS_PROFILE);
   checkStack(cfn, args, (err, exists) => {
     if (err) {
       cb(err);

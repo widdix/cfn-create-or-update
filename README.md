@@ -87,6 +87,16 @@ Additional parameters
 * `AWS_PROFILE` is used if set
 * `AWS_ACCESS_KEY_ID`, `AWS_SECRET_ACCESS_KEY`, and optionally `AWS_SESSION_TOKEN` are used of set
 
+## Multi-Factor Authentication
+
+If your AWS CLI profile has a `mfa_serial` property, then multi-factor authentication is required. You will be prompted to enter your 6-digit MFA token code via the console.
+
+```
+$ cfn-create-or-update --profile admin-role --stack-name mystack --template-body file://mystack.yml
+? MFA token for arn:aws:iam::000000000000:mfa/myusername: 123456
+{}
+```
+
 ## Contribution
 
 If you want to create a Pull-Request please make sure that `make test` runs without failures.

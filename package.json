@@ -17,7 +17,8 @@
   "author": "Michael Wittig <michael@widdix.de>",
   "license": "MIT",
   "dependencies": {
-    "aws-sdk": "2.324.0",
+    "aws-sdk": "2.333.0",
+    "inquirer": "6.2.0",
     "yargs": "12.0.2",
     "assert-plus": "1.0.0",
     "proxy-agent": "3.0.3"
