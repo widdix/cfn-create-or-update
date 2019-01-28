@@ -120,7 +120,15 @@ function updateStack(cfn, args, cb) {
       const ret = {
         ParameterKey: parameter.ParameterKey
       };
-      if (parameter.ParameterValue !== undefined) {
+      if (parameter.ParameterValue !== undefined && parameter.UsePreviousValue === true) {
+        console.warn([
+          'Parameter',
+          parameter.ParameterKey,
+          'contains both ParameterValue and UsePreviousValue == true.',
+          ' ParameterValue will be ignored.'
+        ].join(' '));
+      }
+      if (parameter.ParameterValue !== undefined && parameter.UsePreviousValue !== true) {
         ret.ParameterValue = parameter.ParameterValue;
       }
       if (parameter.UsePreviousValue !== undefined) {
