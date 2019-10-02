@@ -18,6 +18,13 @@ describe('map', function() {
         UsePreviousValue: false
       });
     });
+    it('ParameterKey=key,ParameterValue="x=y",UsePreviousValue=false', function() {
+      assert.deepEqual(map.parameter('ParameterKey=key,ParameterValue="x=y",UsePreviousValue=false'), {
+        ParameterKey: 'key',
+        ParameterValue: 'x=y',
+        UsePreviousValue: false
+      });
+    });
     it('ParameterKey=key,ParameterValue=value', function() {
       assert.deepEqual(map.parameter('ParameterKey=key,ParameterValue=value'), {
         ParameterKey: 'key',
@@ -28,6 +35,12 @@ describe('map', function() {
       assert.throws(() => {
         map.parameter('ParameterKey=key,Unexpected=value');
       }, Error);
+    });
+    it('ParameterKey=key,ParameterValue="x=y"', function() {
+      assert.deepEqual(map.parameter('ParameterKey=key,ParameterValue="x=y"'), {
+        ParameterKey: 'key',
+        ParameterValue: 'x=y'
+      });
     });
     it('ParameterKey=key,ParameterValue="value1,value2",UsePreviousValue=false', function() {
       assert.deepEqual(map.parameter('ParameterKey=key,ParameterValue="value1,value2",UsePreviousValue=false'), {
