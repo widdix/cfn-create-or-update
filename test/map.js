@@ -49,6 +49,24 @@ describe('map', function() {
         UsePreviousValue: false
       });
     });
+    it('ParameterKey=key,ParameterValue=', function() {
+      assert.deepEqual(map.parameter('ParameterKey=key,ParameterValue='), {
+        ParameterKey: 'key',
+        ParameterValue: ''
+      });
+    });
+    it('ParameterKey=key,ParameterValue=a=b', function() {
+      assert.deepEqual(map.parameter('ParameterKey=key,ParameterValue=a=b'), {
+        ParameterKey: 'key',
+        ParameterValue: 'a=b'
+      });
+    });
+    it('ParameterKey=key,ParameterValue="a=b"', function() {
+      assert.deepEqual(map.parameter('ParameterKey=key,ParameterValue="a=b"'), {
+        ParameterKey: 'key',
+        ParameterValue: 'a=b'
+      });
+    });
   });
   describe('tag', function() {
     it('Key=key,Value=value', function() {
