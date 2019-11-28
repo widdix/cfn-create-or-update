@@ -1,9 +1,6 @@
-[![Build Status](https://secure.travis-ci.org/widdix/cfn-create-or-update.png)](http://travis-ci.org/widdix/cfn-create-or-update)
-[![NPM version](https://badge.fury.io/js/cfn-create-or-update.png)](http://badge.fury.io/js/cfn-create-or-update)
-[![NPM dependencies](https://david-dm.org/widdix/cfn-create-or-update.png)](https://david-dm.org/widdix/cfn-create-or-update)
-
 # cfn-create-or-update
 
+> This project is no longer maintained. The official AWS CLI now provides the same functionality with the `aws cloudformation deploy [...] --no-fail-on-empty-changeset` command. [Read more](https://docs.aws.amazon.com/cli/latest/reference/cloudformation/deploy/index.html).
 
 When integrating CloudFormation into your CI/CD pipeline you are faced with the challenge of creating a CloudFormation stack on the first run of the pipeline, while you need to update the stack for all following pipeline runs. If you use the AWS CLI this is painful.
 You may also have your code and template in the same repository. Therefore code changes without the template. But the AWS CLI threats an update without changes to a stack as an error which is not the behavior that you need in your pipeline.
